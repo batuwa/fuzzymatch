@@ -21,7 +21,7 @@ The code is supplied both as a binary and a library at the moment.
 
 This function tells if the given fuzzy search pattern can be found in the given string in sequence. It can be used for any sub-string matching use-cases.  
 
-```
+```rust
 use fuzzymatch::algo::fuzzy_match_simple;
 
 let search = "something";
@@ -36,15 +36,15 @@ println!("Pattern is given string: {:?}", matched);
 
 This function provides a score to each matching string based on whether the match occurred in the beginning of the string, beginning of a word, uppercase letter etc. Higher score means better match. 
 
-```
+```rust
 use fuzzymatch::algo::fuzzy_match;
 
 let search = "something";
 let my_string1 = "some search thing";
 let my_string2 = "this is really something";
 
-let matched1, score1 = fuzzy_match(search, my_string1);
-let matched2, score2 = fuzzy_match(search, my_string2);
+let (_, score1) = fuzzy_match(search, my_string1);
+let (_, score2) = fuzzy_match(search, my_string2);
 
 println!("Score for string1 = {:?}", score1);
 println!("Score for string2 = {:?}", score2);
