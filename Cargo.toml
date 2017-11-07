@@ -1,0 +1,6 @@
+[package]
+name = "fuzzymatch"
+version = "0.1.0"
+authors = ["Saurav Dhungana <saurav.dh@gmail.com>"]
+
+[dependencies]
