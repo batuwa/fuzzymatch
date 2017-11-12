@@ -22,7 +22,7 @@ pub fn fuzzy_match_simple(pattern: &str, document: &str) -> bool {
 }
 
 
-pub fn fuzzy_match(pattern: &str, document: &str) -> (bool, i32, Vec<i32>) {
+pub fn fuzzy_match(pattern: &str, document: &str) -> (bool, i32, Vec<usize>) {
     if pattern.len() == 0 || document.len() == 0 {
         return (false, 0, vec![]);
     }
@@ -44,13 +44,13 @@ pub fn fuzzy_match(pattern: &str, document: &str) -> (bool, i32, Vec<i32>) {
     // Use "best" matched letter if multiple string letters match the pattern
     let mut best_letter = String::new();
     let mut best_lower = String::new();
-    let mut best_letter_idx = 0;
+    let mut best_letter_idx: usize = 0;
     let mut best_letter_score = 0;
 
     let mut matched_indices = Vec::new();    // To enable highlighting to matched characters
-    let mut pattern_idx_max = 0;
+    let mut pattern_idx_max: usize = 0;
     let mut doc_chars = document.chars();
-    let mut doc_idx = 0;
+    let mut doc_idx: usize = 0;
 
     // Loop through each character of document string to calculate score
     'outer: for (pattern_idx, pattern_ch) in pattern.chars().enumerate() {
