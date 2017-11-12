@@ -5,7 +5,7 @@ Sublime Text.
 
 The code is very raw right now and was created as a way for the author to learn Rust programming. However,
 I hope to keep adding for functionality as I learn more. The initial implementation is a direct port of the algorithm 
-described in this [Javascript code](https://github.com/forrestthewoods/lib_fts/blob/master/code/fts_fuzzy_match.js). 
+described in this [blog](https://blog.forrestthewoods.com/reverse-engineering-sublime-text-s-fuzzy-match-4cffeed33fdb). 
 
 ## Features
 
@@ -34,7 +34,7 @@ println!("Pattern is given string: {:?}", matched);
 
 ### Scored Match Algorithm
 
-This function provides a score to each matching string based on whether the match occurred in the beginning of the string, beginning of a word, uppercase letter etc. Higher score means better match. 
+This function provides a score to each matching string based on whether the match occurred in the beginning of the string, beginning of a word, uppercase letter etc. Higher score means better match. It also returns the indices of the matched characters.
 
 ```rust
 use fuzzymatch::algo::fuzzy_match;
@@ -43,8 +43,8 @@ let search = "something";
 let my_string1 = "some search thing";
 let my_string2 = "this is really something";
 
-let (_, score1) = fuzzy_match(search, my_string1);
-let (_, score2) = fuzzy_match(search, my_string2);
+let (is_match1, score1, matching_indices1) = fuzzy_match(search, my_string1);
+let (is_match2, score2, matching_indices1) = fuzzy_match(search, my_string2);
 
 println!("Score for string1 = {:?}", score1);
 println!("Score for string2 = {:?}", score2);

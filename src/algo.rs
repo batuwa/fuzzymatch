@@ -22,9 +22,9 @@ pub fn fuzzy_match_simple(pattern: &str, document: &str) -> bool {
 }
 
 
-pub fn fuzzy_match(pattern: &str, document: &str) -> (bool, i32) {
+pub fn fuzzy_match(pattern: &str, document: &str) -> (bool, i32, Vec<i32>) {
     if pattern.len() == 0 || document.len() == 0 {
-        return (false, 0);
+        return (false, 0, vec![]);
     }
 
     // Score factors
@@ -68,7 +68,6 @@ pub fn fuzzy_match(pattern: &str, document: &str) -> (bool, i32) {
             if pattern_idx_max < pattern.len() { 
                next_match = pattern_ch_lower == doc_ch_lower;       
             }
-
 
             if best_letter.len() > 0 {
                 rematch = best_lower == doc_ch_lower;
@@ -124,7 +123,6 @@ pub fn fuzzy_match(pattern: &str, document: &str) -> (bool, i32) {
                     if pattern_idx_max < pattern.len() {
                         best_letter_idx = doc_idx;
                     }
-                                        
                 }
                 prev_matched = true;
 
@@ -140,7 +138,6 @@ pub fn fuzzy_match(pattern: &str, document: &str) -> (bool, i32) {
                     }
                 }
             }
-
             else {
                 score += unmatched_letter_penalty;
                 prev_matched = false;
@@ -159,5 +156,5 @@ pub fn fuzzy_match(pattern: &str, document: &str) -> (bool, i32) {
         matched_indices.push(best_letter_idx);
     }
 
-    return (pattern_idx_max == pattern.len(), score)
+    return (pattern_idx_max == pattern.len(), score, matched_indices);
 }

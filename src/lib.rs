@@ -19,11 +19,11 @@ mod tests {
 
     #[test]
     fn fuzzy_match_hi() {
-        assert_eq!(algo::fuzzy_match("lib", "LightingBuildInfo.h"), (true, 10));
+        assert_eq!(algo::fuzzy_match("lib", "LightingBuildInfo.h"), (true, 10,  vec![0, 1, 8]));
     }
 
     #[test]
     fn fuzzy_match_low() {
-        assert_eq!(algo::fuzzy_match("lib", "EnvQueryContext_BlueprintBase.cpp"), (true, -29));
+        assert_eq!(algo::fuzzy_match("lib", "EnvQueryContext_BlueprintBase.cpp"), (true, -29, vec![17, 22, 25]));
     }
 }
