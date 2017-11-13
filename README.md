@@ -4,22 +4,24 @@ A simple fuzzy string matching library that provides functionality similar to th
 Sublime Text. 
 
 The code is very raw right now and was created as a way for the author to learn Rust programming. However,
-I hope to keep adding for functionality as I learn more. The initial implementation is a direct port of the algorithm 
+I hope to keep adding more functionality as I learn more. The initial implementation is a direct port of the algorithm 
 described in this [blog](https://blog.forrestthewoods.com/reverse-engineering-sublime-text-s-fuzzy-match-4cffeed33fdb). 
 
 ## Features
 
-Given a `string` and a `pattern`, the algorithm finds out whether the string contains all the characters in pattern signature in order. It uses various heuristics to score the match. 
+Given a `string` and a `pattern`, the algorithm finds out whether the string contains all the characters in the pattern signature in order. It uses various heuristics to score the match.
 
 I plan to create a web frontend in the future that will use this fuzzy matcher. 
 
 ## Usage
 
-The code is supplied both as a binary and a library at the moment. 
+The code is supplied as a library at the moment. It can be added in the Cargo.toml file of your cargo project with the github link as
+`fuzzymatch = { git = "https://github.com/batuwa/fuzzymatch.git" }` and importing it into the module it will be used like any other
+crate `extern crate fuzzymatch`. See the [fuzzysearch](https://github.com/batuwa/fuzzysearch) repo for an example. 
 
 ### Simple Match Algorithm
 
-This function tells if the given fuzzy search pattern can be found in the given string in sequence. It can be used for any sub-string matching use-cases.  
+This function tells if the given fuzzy search pattern can be found in the given string in sequence. It can be used for any sub-string matching use-case.  
 
 ```rust
 use fuzzymatch::algo::fuzzy_match_simple;
